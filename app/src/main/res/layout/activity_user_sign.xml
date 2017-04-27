@@ -1,0 +1,108 @@
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <variable
+            name="signUpViewModel"
+            type="cn.edu.cuit.wsy.travelnote.login.SignUpViewModel" />
+
+        <import type="android.view.View" />
+    </data>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <EditText
+            android:id="@+id/accountEdit"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:text="@={signUpViewModel.account}" />
+
+        <EditText
+            android:id="@+id/passwordEdit"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/accountEdit"
+            android:text="@={signUpViewModel.password}" />
+
+        <TextView
+            android:id="@+id/signUpText"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/passwordEdit"
+            android:layout_centerHorizontal="true"
+            android:background="@color/colorPrimary"
+            android:onClick="@{signUpViewModel.signClick}"
+            android:padding="8dp"
+            android:text="注册"
+            android:textColor="@color/white" />
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <RelativeLayout
+                android:id="@+id/title_bar"
+                android:layout_width="match_parent"
+                android:layout_height="49dp"
+                android:background="@color/white"
+                android:elevation="1dp">
+
+                <ImageView
+                    android:id="@+id/cv"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:layout_alignParentLeft="true"
+                    android:layout_centerVertical="true"
+                    android:paddingLeft="10dp"
+                    android:paddingRight="15dp"
+                    app:clickCommand="@{signUpViewModel.onBackClick}" />
+
+                <TextView
+                    android:id="@+id/cu"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerHorizontal="true"
+                    android:layout_centerVertical="true"
+                    android:text="@{signUpViewModel.title}"
+                    android:textColor="#ff232326"
+                    android:textSize="17sp" />
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_below="@id/title_bar"
+                android:visibility="@{signUpViewModel.emptyContent?View.VISIBLE:View.GONE}">
+
+                <ImageView
+                    android:id="@+id/empty_image"
+                    android:layout_width="96dp"
+                    android:layout_height="96dp"
+                    android:layout_centerInParent="true"
+                    android:tint="#A2A2A2" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/empty_image"
+                    android:layout_centerInParent="true"
+                    android:layout_marginTop="24dp"
+                    android:textSize="18sp" />
+            </RelativeLayout>
+
+            <ProgressBar
+                android:id="@+id/loadding"
+                android:layout_width="34dp"
+                android:layout_height="34dp"
+                android:layout_centerInParent="true"
+                android:visibility="@{signUpViewModel.loadding?View.VISIBLE:View.GONE}" />
+        </RelativeLayout>
+
+
+    </RelativeLayout>
+</layout>

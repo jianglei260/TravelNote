@@ -1,0 +1,126 @@
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <variable
+            name="loginViewModel"
+            type="cn.edu.cuit.wsy.travelnote.login.LoginViewModel" />
+        <import type="android.view.View"/>
+    </data>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <RelativeLayout
+            android:id="@+id/title_bar"
+            android:layout_width="match_parent"
+            android:layout_height="49dp"
+            android:background="@color/white"
+            android:elevation="1dp">
+
+            <ImageView
+                android:id="@+id/cv"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_alignParentLeft="true"
+                android:layout_centerVertical="true"
+                android:paddingLeft="10dp"
+                android:paddingRight="15dp"
+                app:clickCommand="@{loginViewModel.onBackClick}" />
+
+            <TextView
+                android:id="@+id/cu"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerHorizontal="true"
+                android:layout_centerVertical="true"
+                android:text="@{loginViewModel.title}"
+                android:textColor="#ff232326"
+                android:textSize="17sp" />
+        </RelativeLayout>
+
+        <TextView
+            android:id="@+id/loginButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:onClick="@{loginViewModel.loginClick}"
+            android:layout_below="@+id/passwordEdit"
+            android:layout_centerHorizontal="true"
+            android:text="登录"
+            android:padding="8dp"
+            android:background="@color/colorPrimary"
+            android:textColor="@color/white"/>
+
+        <EditText
+            android:id="@+id/accountEdit"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@={loginViewModel.account}"
+            android:layout_centerInParent="true"
+            android:hint="请输入账号"/>
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:visibility="@{loginViewModel.emptyContent?View.VISIBLE:View.GONE}">
+
+                <ImageView
+                    android:id="@+id/empty_image"
+                    android:layout_width="96dp"
+                    android:layout_height="96dp"
+                    android:layout_centerInParent="true"
+                    android:tint="#A2A2A2" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/empty_image"
+                    android:layout_centerInParent="true"
+                    android:layout_marginTop="24dp"
+                    android:textSize="18sp" />
+            </RelativeLayout>
+
+            <ProgressBar
+                android:id="@+id/loadding"
+                android:layout_width="34dp"
+                android:layout_height="34dp"
+                android:layout_centerInParent="true"
+                android:visibility="@{loginViewModel.loadding?View.VISIBLE:View.GONE}" />
+        </RelativeLayout>
+
+        <EditText
+            android:id="@+id/passwordEdit"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@={loginViewModel.password}"
+            android:layout_below="@id/accountEdit"
+            android:hint="请输入密码"/>
+
+        <TextView
+            android:id="@+id/signUpText"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:onClick="@{loginViewModel.signClick}"
+            android:text="还没有账号？点击注册"
+            android:layout_alignParentBottom="true"
+            android:layout_centerHorizontal="true"
+            android:layout_marginBottom="56dp"/>
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:onClick="@{loginViewModel.testClick}"
+            android:layout_centerHorizontal="true"
+            android:text="测试"
+            android:padding="8dp"
+            android:background="@color/colorPrimary"
+            android:textColor="@color/white"
+            android:layout_alignParentBottom="true"/>
+    </RelativeLayout>
+</layout>
