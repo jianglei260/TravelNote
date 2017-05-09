@@ -1,5 +1,149 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="match_parent" android:layout_height="match_parent">
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
 
-</RelativeLayout>
+    <data>
+
+        <variable
+            name="meViewModel"
+            type="cn.edu.cuit.wsy.travelnote.main.MeViewModel" />
+
+        <import type="me.tatarka.bindingcollectionadapter.LayoutManagers" />
+
+        <import type="android.view.View" />
+
+        <import type="android.text.TextUtils" />
+    </data>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+        <RelativeLayout
+            android:id="@+id/header_layout"
+            android:layout_width="match_parent"
+            android:layout_height="160dp"
+            android:background="@color/colorPrimary"
+            app:clickCommand="@{meViewModel.userHeadClick}">
+
+            <com.facebook.drawee.view.SimpleDraweeView
+                android:id="@+id/user_image"
+                android:layout_width="64dp"
+                android:layout_height="64dp"
+                android:layout_centerVertical="true"
+                android:layout_marginLeft="16dp"
+                android:layout_marginTop="16dp"
+                android:background="@drawable/shape_head_bg"
+                app:placeholderImage="@drawable/ic_head_default"
+                android:padding="4dp"
+                app:imageUri="@{meViewModel.userHead}"
+                app:roundAsCircle="true"
+                app:roundingBorderColor="@color/white"
+                app:roundingBorderWidth="1dp" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:layout_marginLeft="16dp"
+                android:layout_toRightOf="@id/user_image"
+                android:text="@{meViewModel.userName}"
+                android:textColor="@color/white" />
+
+            <ImageView
+                android:id="@+id/settings"
+                android:layout_width="32dp"
+                android:layout_height="32dp"
+                android:layout_alignParentRight="true"
+                android:layout_marginRight="8dp"
+                android:layout_marginTop="8dp"
+                android:padding="4dp"
+                android:src="@drawable/ic_logout"
+                app:clickCommand="@{meViewModel.settingClick}" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentRight="true"
+                android:layout_centerVertical="true"
+                android:layout_marginRight="16dp"
+                android:drawablePadding="4dp"
+                android:drawableRight="@drawable/ic_detail_white"
+                android:text="个人信息"
+                android:textColor="@color/white"/>
+        </RelativeLayout>
+
+        <ScrollView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:background="@color/white"
+                android:orientation="vertical">
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:background="@color/lighter_gray" />
+
+                <RelativeLayout
+                    android:id="@+id/bought_layout"
+                    android:layout_width="match_parent"
+                    android:layout_height="49dp"
+                    android:layout_below="@id/header_layout"
+                    android:background="@android:color/white"
+                    app:clickCommand="@{meViewModel.noteClick}">
+                    <TextView
+                        style="@style/user_center_item_title"
+                        android:drawableLeft="@drawable/ic_team"
+                        android:text="我的游记" />
+                    <ImageView style="@style/user_center_item_right" />
+                </RelativeLayout>
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:background="@color/lighter_gray" />
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="49dp"
+                    android:layout_below="@id/header_layout"
+                    android:background="@android:color/white"
+                    app:clickCommand="@{meViewModel.askClick}">
+                    <TextView
+                        style="@style/user_center_item_title"
+                        android:drawableLeft="@drawable/ic_team"
+                        android:text="我的问题" />
+                    <ImageView style="@style/user_center_item_right" />
+                </RelativeLayout>
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:background="@color/lighter_gray" />
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="49dp"
+                    android:layout_below="@id/header_layout"
+                    android:background="@android:color/white"
+                    app:clickCommand="@{meViewModel.commentClick}">
+                    <TextView
+                        style="@style/user_center_item_title"
+                        android:drawableLeft="@drawable/ic_sign_gray"
+                        android:text="我的回答" />
+                    <ImageView style="@style/user_center_item_right" />
+                </RelativeLayout>
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:background="@color/lighter_gray" />
+            </LinearLayout>
+        </ScrollView>
+    </LinearLayout>
+</layout>

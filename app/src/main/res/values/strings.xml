@@ -1,3 +1,33 @@
 <resources>
     <string name="app_name">TravelNote</string>
+    <string name="note">游记</string>
+    <string name="target">目的地</string>
+    <string name="add">发表</string>
+    <string name="ask">问答</string>
+    <string name="me">我的</string>
+    <string name="title_empty_notiy">标题不能为空</string>
+    <string name="code_empty_notiy">签到码不能为空</string>
+    <string name="content_empty_notiy">内容不能为空</string>
+    <string name="user_empty_notiy">请选择成员</string>
+    <string name="send_success">创建成功</string>
+    <string name="send_failed">创建失败</string>
+    <string name="load_failed">加载失败</string>
+    <string name="upload_failed">上传失败</string>
+    <string-array name="send_items">
+        <item>发表游记</item>
+        <item>发表问答</item>
+    </string-array>
+    <string-array name="edit_items">
+        <item>删除</item>
+        <item>编辑</item>
+    </string-array>
+    <string-array name="pic_items">
+        <item>从相册选取</item>
+    </string-array>
+    <string name="select_send">选择图片</string>
+    <string name="select_pic">选择图片</string>
+    <string name="account_empty">用户名不能为空</string>
+    <string name="password_empty">密码不能为空</string>
+    <string name="login_failed">登录失败</string>
+    <string name="sign_up_failed">注册失败</string>
 </resources>

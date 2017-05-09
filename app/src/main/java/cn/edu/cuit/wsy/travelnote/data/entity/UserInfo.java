@@ -2,16 +2,27 @@ package cn.edu.cuit.wsy.travelnote.data.entity;
 
 import java.util.List;
 
+import cn.edu.cuit.wsy.travelnote.utils.LeanEngine;
+
 /**
  * Created by jianglei on 2017/4/25.
  */
-
+@LeanEngine.Entity
 public class UserInfo {
     protected String name;//用户名
-    private String head;//编号
+    private String nick;
+    private String url;//头像
     private String objectId;//对象id
     private String createdAt;//对象创建时间
     private String updatedAt;//对象更新时间
+
+    public String getNick() {
+        return nick;
+    }
+
+    public void setNick(String nick) {
+        this.nick = nick;
+    }
 
     public String getObjectId() {
         return objectId;
@@ -45,11 +56,11 @@ public class UserInfo {
         this.name = name;
     }
 
-    public String getHead() {
-        return head;
+    public String getUrl() {
+        return url;
     }
 
-    public void setHead(String head) {
-        this.head = head;
+    public void setUrl(String url) {
+        this.url = url;
     }
 }

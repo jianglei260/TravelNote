@@ -6,9 +6,12 @@ import com.avos.avoscloud.AVObject;
 import java.util.ArrayList;
 import java.util.List;
 
+import cn.edu.cuit.wsy.travelnote.utils.LeanEngine;
+
 /**
  * Created by jianglei on 2017/4/25.
  */
+@LeanEngine.Entity
 public class Ask{
     private String title;//标题
     private String content;//内容

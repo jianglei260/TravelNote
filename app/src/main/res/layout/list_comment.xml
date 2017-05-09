@@ -1,0 +1,112 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <data>
+
+        <variable
+            name="itemViewModel"
+            type="cn.edu.cuit.wsy.travelnote.comment.CommentItemViewModel" />
+
+        <import type="android.view.View" />
+
+        <import type="android.text.TextUtils" />
+    </data>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="4dp"
+        android:background="@color/white"
+        android:padding="8dp"
+        app:clickCommand="@{itemViewModel.itemClick}">
+
+        <com.facebook.drawee.view.SimpleDraweeView
+            android:id="@+id/head"
+            android:layout_width="32dp"
+            android:layout_height="32dp"
+            android:layout_margin="10dp"
+            app:imageUri="@{itemViewModel.userHead}"
+            app:placeholderImage="@drawable/ic_head_default"
+            app:roundAsCircle="true"
+            app:roundingBorderColor="@color/colorPrimary"
+            app:roundingBorderWidth="1dp" />
+        <TextView
+            android:id="@+id/sender"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="8dp"
+            android:layout_toRightOf="@id/head"
+            android:ellipsize="end"
+            android:lines="1"
+            android:padding="4dp"
+            android:text="@{itemViewModel.sender}" />
+
+        <TextView
+            android:id="@+id/date"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:layout_margin="8dp"
+            android:padding="4dp"
+            android:text="@{itemViewModel.date}" />
+        <ImageView
+            android:id="@+id/comment"
+            android:layout_width="32dp"
+            android:layout_height="32dp"
+            android:src="@drawable/ic_comment"
+            android:layout_below="@id/date"
+            android:layout_alignParentRight="true"
+            android:padding="4dp"
+            app:clickCommand="@{itemViewModel.comentComentClick}"
+            android:tint="@color/colorPrimary"
+            android:layout_marginRight="10dp"
+            android:layout_marginTop="8dp"/>
+
+        <TextView
+            android:id="@+id/content"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/sender"
+            android:layout_margin="8dp"
+            android:layout_toRightOf="@id/head"
+            android:layout_toLeftOf="@id/comment"
+            android:padding="4dp"
+            android:text="@{itemViewModel.content}" />
+
+        <LinearLayout
+            android:id="@+id/child_commment"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignLeft="@id/content"
+            android:layout_below="@id/content"
+            android:background="@color/deep_white_smoke"
+            android:orientation="vertical"
+            android:visibility="@{itemViewModel.childVisible?View.VISIBLE:View.GONE}"
+            android:layout_marginRight="10dp">
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:padding="4dp"
+                android:text="@{itemViewModel.childContent1}"
+                android:visibility="@{TextUtils.isEmpty(itemViewModel.childContent1)?View.GONE:View.VISIBLE}" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:padding="4dp"
+                android:text="@{itemViewModel.childContent2}"
+                android:visibility="@{TextUtils.isEmpty(itemViewModel.childContent2)?View.GONE:View.VISIBLE}" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:padding="4dp"
+                android:text="@{itemViewModel.more}"
+                android:visibility="@{TextUtils.isEmpty(itemViewModel.more)?View.GONE:View.VISIBLE}"
+                app:clickCommand="@{itemViewModel.moreClick}"/>
+        </LinearLayout>
+    </RelativeLayout>
+
+</layout>

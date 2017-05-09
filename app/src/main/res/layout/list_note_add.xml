@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <data>
+
+        <variable
+            name="itemViewModel"
+            type="cn.edu.cuit.wsy.travelnote.note.AddItemViewModel" />
+
+        <import type="android.view.View" />
+    </data>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="56dp"
+        android:layout_marginTop="4dp"
+        android:background="@color/white"
+        android:padding="8dp">
+
+        <ImageView
+            android:layout_width="32dp"
+            android:layout_height="32dp"
+            android:layout_centerInParent="true"
+            android:focusable="true"
+            android:src="@drawable/ic_add_item"
+            app:clickCommand="@{itemViewModel.onFocusChangeCommand}" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="40dp"
+            android:background="@color/white"
+            android:gravity="center"
+            android:orientation="horizontal"
+            android:visibility="@{itemViewModel.onFocus?View.VISIBLE:View.GONE}">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="40dp"
+                android:layout_marginRight="32dp"
+                android:drawableLeft="@drawable/ic_text"
+                android:drawablePadding="8dp"
+                android:gravity="center"
+                android:text="添加文字"
+                android:textColor="@color/colorPrimary"
+                app:clickCommand="@{itemViewModel.addTextClick}" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="40dp"
+                android:layout_marginLeft="32dp"
+                android:drawableLeft="@drawable/ic_image"
+                android:drawablePadding="8dp"
+                android:gravity="center"
+                android:text="添加图片"
+                android:textColor="@color/colorPrimary"
+                app:clickCommand="@{itemViewModel.addImageClick}" />
+        </LinearLayout>
+    </RelativeLayout>
+
+</layout>

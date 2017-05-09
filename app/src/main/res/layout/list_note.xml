@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <data>
+
+        <variable
+            name="itemViewModel"
+            type="cn.edu.cuit.wsy.travelnote.note.NoteItemViewModel" />
+
+        <import type="android.view.View" />
+    </data>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="2dp"
+        android:background="@color/white"
+        app:clickCommand="@{itemViewModel.itemClick}">
+
+        <com.facebook.drawee.view.SimpleDraweeView
+            android:id="@+id/image"
+            android:layout_width="match_parent"
+            android:layout_height="160dp"
+            android:layout_margin="10dp"
+            app:imageUri="@{itemViewModel.image}" />
+
+        <TextView
+            android:id="@+id/title"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/image"
+            android:layout_margin="10dp"
+            android:layout_toLeftOf="@+id/commentNum"
+            android:ellipsize="end"
+            android:maxLines="2"
+            android:text="@{itemViewModel.title}"
+            android:textColor="@color/black"
+            android:textSize="18sp" />
+
+        <TextView
+            android:id="@+id/commentNum"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:layout_alignTop="@id/title"
+            android:layout_margin="8dp"
+            android:drawablePadding="8dp"
+            android:drawableRight="@drawable/ic_comment"
+            android:drawableTint="@color/colorPrimary"
+            android:ellipsize="end"
+            android:gravity="right"
+            android:text="@{itemViewModel.commentNum}"
+            android:textColor="@color/colorPrimary" />
+
+        <com.facebook.drawee.view.SimpleDraweeView
+            android:id="@+id/head"
+            android:layout_width="32dp"
+            android:layout_height="32dp"
+            android:layout_below="@id/title"
+            android:layout_margin="10dp"
+            app:imageUri="@{itemViewModel.userHead}"
+            app:placeholderImage="@drawable/ic_head_default"
+            app:roundAsCircle="true"
+            app:roundingBorderColor="@color/colorPrimary"
+            app:roundingBorderWidth="1dp" />
+
+        <TextView
+            android:id="@+id/sender"
+            android:layout_width="wrap_content"
+            android:layout_height="32dp"
+            android:layout_below="@id/title"
+            android:layout_margin="8dp"
+            android:layout_toRightOf="@id/head"
+            android:ellipsize="end"
+            android:gravity="center_vertical"
+            android:lines="1"
+            android:text="@{itemViewModel.sender}" />
+
+        <TextView
+            android:id="@+id/date"
+            android:layout_width="wrap_content"
+            android:layout_height="32dp"
+            android:layout_alignParentRight="true"
+            android:layout_alignTop="@id/sender"
+            android:layout_marginRight="8dp"
+            android:ellipsize="end"
+            android:gravity="center_vertical"
+            android:lines="1"
+            android:text="@{itemViewModel.date}" />
+
+    </RelativeLayout>
+</layout>

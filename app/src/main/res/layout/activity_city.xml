@@ -1,0 +1,103 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <data>
+
+        <variable
+            name="cityViewModel"
+            type="cn.edu.cuit.wsy.travelnote.target.CityViewModel" />
+
+        <import type="me.tatarka.bindingcollectionadapter.LayoutManagers" />
+
+        <import type="android.view.View" />
+    </data>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/deep_white_smoke">
+
+        <RelativeLayout
+            android:id="@+id/title_bar"
+            android:layout_width="match_parent"
+            android:layout_height="49dp"
+            android:background="@color/white"
+            android:elevation="1dp">
+
+            <ImageView
+                android:id="@+id/left_image"
+                android:layout_width="49dp"
+                android:layout_height="49dp"
+                android:layout_alignParentLeft="true"
+                android:layout_centerVertical="true"
+                android:paddingLeft="10dp"
+                android:paddingRight="15dp"
+                android:src="@drawable/ic_back"
+                app:clickCommand="@{cityViewModel.onBackClick}" />
+
+            <TextView
+                android:id="@+id/title"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerHorizontal="true"
+                android:layout_centerVertical="true"
+                android:text="选择目的地"
+                android:textColor="#ff232326"
+                android:textSize="17sp" />
+
+            <ImageView
+                android:id="@+id/right_image"
+                android:layout_width="49dp"
+                android:layout_height="49dp"
+                android:layout_alignParentRight="true"
+                android:layout_centerVertical="true"
+                android:paddingLeft="10dp"
+                android:paddingRight="15dp"
+                android:src="@drawable/ic_finish"
+                android:tint="@color/colorPrimary"
+                app:clickCommand="@{cityViewModel.finishClick}" />
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_below="@id/title_bar">
+
+            <LinearLayout
+                android:id="@+id/location_layout"
+                android:layout_width="match_parent"
+                android:layout_height="40dp"
+                android:orientation="horizontal">
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@{cityViewModel.location}"
+                    android:layout_gravity="center_vertical"
+                    android:layout_margin="10dp"
+                    android:textSize="16sp"
+                    android:drawableLeft="@drawable/ic_location"
+                    android:drawableTint="@color/colorPrimary"
+                    app:clickCommand="@{cityViewModel.locationClick}"/>
+                <ProgressBar
+                    android:id="@+id/progress"
+                    android:layout_width="20dp"
+                    android:layout_height="20dp"
+                    android:layout_gravity="center_vertical"
+                    android:visibility="@{cityViewModel.loadding?View.VISIBLE:View.GONE}" />
+
+            </LinearLayout>
+
+            <EditText
+                android:layout_below="@id/location_layout"
+                android:layout_width="match_parent"
+                android:layout_height="40dp"
+                android:layout_margin="8dp"
+                android:hint="输入目的地..."
+                android:background="@drawable/selector_edittext"
+                android:padding="8dp"
+                android:text="@={cityViewModel.city}"
+                android:gravity="start"/>
+        </RelativeLayout>
+    </RelativeLayout>
+</layout>

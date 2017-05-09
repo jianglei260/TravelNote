@@ -1,9 +1,133 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    tools:context="cn.edu.cuit.wsy.travelnote.notedetail.NoteDetailActivity">
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
 
-</android.support.constraint.ConstraintLayout>
+    <data>
+
+        <variable
+            name="noteViewModel"
+            type="cn.edu.cuit.wsy.travelnote.note.NoteDetailViewModel" />
+
+        <import type="me.tatarka.bindingcollectionadapter.LayoutManagers" />
+
+        <import type="android.view.View" />
+    </data>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/deep_white_smoke">
+
+        <RelativeLayout
+            android:id="@+id/title_bar"
+            android:layout_width="match_parent"
+            android:layout_height="49dp"
+            android:background="@color/white"
+            android:elevation="1dp">
+
+            <ImageView
+                android:id="@+id/left_image"
+                android:layout_width="49dp"
+                android:layout_height="49dp"
+                android:layout_alignParentLeft="true"
+                android:layout_centerVertical="true"
+                android:paddingLeft="10dp"
+                android:paddingRight="15dp"
+                android:src="@drawable/ic_back"
+                app:clickCommand="@{noteViewModel.onBackClick}" />
+
+            <TextView
+                android:id="@+id/title"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerHorizontal="true"
+                android:layout_centerVertical="true"
+                android:ellipsize="end"
+                android:lines="1"
+                android:maxWidth="180dp"
+                android:text="@{noteViewModel.title}"
+                android:textColor="#ff232326"
+                android:textSize="17sp" />
+            <ImageView
+                android:layout_width="49dp"
+                android:layout_height="49dp"
+                android:layout_centerVertical="true"
+                android:src="@drawable/ic_edit"
+                android:paddingLeft="10dp"
+                android:paddingRight="15dp"
+                android:tint="@color/colorPrimary"
+                android:layout_toLeftOf="@+id/right_image"
+                app:clickCommand="@{noteViewModel.eidtClick}"
+                android:visibility="@{noteViewModel.editble?View.VISIBLE:View.GONE}"/>
+            <ImageView
+                android:id="@+id/right_image"
+                android:layout_width="49dp"
+                android:layout_height="49dp"
+                android:layout_alignParentRight="true"
+                android:layout_centerVertical="true"
+                android:src="@drawable/ic_delete"
+                android:paddingLeft="10dp"
+                android:paddingRight="15dp"
+                android:tint="@color/colorPrimary"
+                app:clickCommand="@{noteViewModel.deleteClick}"
+                android:visibility="@{noteViewModel.editble?View.VISIBLE:View.GONE}"/>
+            <!--<ImageView-->
+            <!--android:id="@+id/right_image"-->
+            <!--android:layout_width="49dp"-->
+            <!--android:layout_height="49dp"-->
+            <!--android:layout_alignParentRight="true"-->
+            <!--android:layout_centerVertical="true"-->
+            <!--android:src="@drawable/ic_add"-->
+            <!--android:paddingLeft="10dp"-->
+            <!--android:paddingRight="15dp"-->
+            <!--android:tint="@color/colorPrimary"-->
+            <!--android:visibility="gone"/>-->
+        </RelativeLayout>
+
+        <android.support.v4.widget.SwipeRefreshLayout
+            android:id="@+id/swip_layout"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_above="@+id/comment_layout"
+            android:layout_below="@id/title_bar"
+            app:refresh="@{noteViewModel}">
+
+            <android.support.v7.widget.RecyclerView
+                android:id="@+id/recycler_view"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                app:itemView="@{noteViewModel.itemView}"
+                app:items="@{noteViewModel.viewModels}"
+                app:layoutManager="@{LayoutManagers.linear()}" />
+
+        </android.support.v4.widget.SwipeRefreshLayout>
+
+        <LinearLayout
+            android:id="@+id/comment_layout"
+            android:layout_width="match_parent"
+            android:layout_height="48dp"
+            android:layout_alignParentBottom="true"
+            android:background="@color/white"
+            android:padding="4dp"
+            android:elevation="1dp">
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="40dp"
+                android:background="@drawable/shape_normal_border"
+                android:gravity="center_vertical"
+                android:padding="8dp"
+                android:text="回复这篇大作..."
+                app:clickCommand="@{noteViewModel.commentClick}" />
+
+        </LinearLayout>
+
+        <ProgressBar
+            android:id="@+id/progress"
+            android:layout_width="34dp"
+            android:layout_height="34dp"
+            android:layout_centerInParent="true"
+            android:visibility="@{noteViewModel.loadding?View.VISIBLE:View.GONE}" />
+
+    </RelativeLayout>
+</layout>

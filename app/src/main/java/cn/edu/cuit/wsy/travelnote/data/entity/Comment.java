@@ -3,10 +3,12 @@ package cn.edu.cuit.wsy.travelnote.data.entity;
 import java.util.ArrayList;
 import java.util.List;
 
+import cn.edu.cuit.wsy.travelnote.utils.LeanEngine;
+
 /**
  * Created by jianglei on 2017/4/25.
  */
-
+@LeanEngine.Entity
 public class Comment {
     private UserInfo sender;//评论者
     private String content;//评论内容

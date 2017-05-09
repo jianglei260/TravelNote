@@ -1,6 +1,5 @@
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools">
+    xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <data>
 
@@ -15,11 +14,30 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
+        <RelativeLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:layout_marginBottom="10dp"
+            android:layout_marginTop="120dp">
+
+            <ImageView
+                android:id="@+id/empty_image"
+                android:layout_width="96dp"
+                android:layout_height="96dp"
+                android:layout_centerInParent="true"
+                android:src="@drawable/ic_head_default" />
+        </RelativeLayout>
+
         <EditText
             android:id="@+id/accountEdit"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="40dp"
             android:layout_centerInParent="true"
+            android:layout_margin="10dp"
+            android:background="@drawable/selector_edittext"
+            android:hint="请输入账号"
+            android:padding="8dp"
             android:text="@={signUpViewModel.account}" />
 
         <EditText
@@ -27,17 +45,22 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_below="@id/accountEdit"
+            android:layout_margin="10dp"
+            android:background="@drawable/selector_edittext"
+            android:hint="请输入密码"
+            android:inputType="textPassword"
+            android:padding="8dp"
             android:text="@={signUpViewModel.password}" />
 
-        <TextView
+        <Button
             android:id="@+id/signUpText"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_width="180dp"
+            android:layout_height="40dp"
             android:layout_below="@id/passwordEdit"
             android:layout_centerHorizontal="true"
-            android:background="@color/colorPrimary"
+            android:layout_margin="10dp"
+            android:background="@drawable/selector_button"
             android:onClick="@{signUpViewModel.signClick}"
-            android:padding="8dp"
             android:text="注册"
             android:textColor="@color/white" />
 
@@ -60,6 +83,7 @@
                     android:layout_centerVertical="true"
                     android:paddingLeft="10dp"
                     android:paddingRight="15dp"
+                    android:src="@drawable/ic_back"
                     app:clickCommand="@{signUpViewModel.onBackClick}" />
 
                 <TextView
@@ -71,28 +95,6 @@
                     android:text="@{signUpViewModel.title}"
                     android:textColor="#ff232326"
                     android:textSize="17sp" />
-            </RelativeLayout>
-
-            <RelativeLayout
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_below="@id/title_bar"
-                android:visibility="@{signUpViewModel.emptyContent?View.VISIBLE:View.GONE}">
-
-                <ImageView
-                    android:id="@+id/empty_image"
-                    android:layout_width="96dp"
-                    android:layout_height="96dp"
-                    android:layout_centerInParent="true"
-                    android:tint="#A2A2A2" />
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_below="@+id/empty_image"
-                    android:layout_centerInParent="true"
-                    android:layout_marginTop="24dp"
-                    android:textSize="18sp" />
             </RelativeLayout>
 
             <ProgressBar
